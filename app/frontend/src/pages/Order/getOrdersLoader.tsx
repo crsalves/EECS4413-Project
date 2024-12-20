@@ -1,7 +1,7 @@
 export async function getOrders() {
 	const token = localStorage.getItem('token');
 
-	const response = await fetch(`${window.config.apiUrl}/order`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/order`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

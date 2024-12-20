@@ -83,7 +83,7 @@ export default function CheckoutSummaryPage() {
 							>
 								<CardMedia
 									component="img"
-									image={`${window.config.apiUrl}/${item.imageUrl}`}
+									image={`${process.env.REACT_APP_API_URL}/${item.imageUrl}`}
 									alt={item.name}
 									sx={{ width: 100, height: 100, objectFit: 'cover' }}
 								/>

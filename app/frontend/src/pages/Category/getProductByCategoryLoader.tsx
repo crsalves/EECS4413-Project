@@ -1,7 +1,7 @@
 export async function getProductByCategory({ params }) {
 	const categoryId = params.categoryId;
 
-	const response = await fetch(`${window.config.apiUrl}/product/category/${categoryId}`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/product/category/${categoryId}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ export async function getProductByCategory({ params }) {
 }
 
 export async function getCategoriesLoader() {
-	const response = await fetch(`${window.config.apiUrl}/category`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/category`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'

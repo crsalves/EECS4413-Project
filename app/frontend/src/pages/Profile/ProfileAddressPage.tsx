@@ -156,7 +156,7 @@ export default function ProfileAddressPage() {
 				console.log('Updating address with token ', JSON.stringify(updateData));
 
 				const response = await fetch(
-					`${window.config.apiUrl}/user/${userContext.user.userId}/address/${formData.userAddressId}`,
+					`${process.env.REACT_APP_API_URL}/user/${userContext.user.userId}/address/${formData.userAddressId}`,
 					{
 						method: 'PUT',
 						body: JSON.stringify(updateData),
@@ -194,7 +194,7 @@ export default function ProfileAddressPage() {
 			};
 			console.log('Updating address with token ', JSON.stringify(updateData));
 
-			const response = await fetch(`${window.config.apiUrl}/user/${userContext.user.userId}/address`, {
+			const response = await fetch(`${process.env.REACT_APP_API_URL}/user/${userContext.user.userId}/address`, {
 				method: 'POST',
 				body: JSON.stringify(updateData),
 				headers: {

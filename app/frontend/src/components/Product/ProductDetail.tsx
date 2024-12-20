@@ -8,7 +8,7 @@ export default function ProductDetail({ name, price, description, imageUrl, onIn
 					<CardMedia
 						component="img"
 						height="300"
-						image={`${window.config.apiUrl}/${imageUrl}`}
+						image={`${process.env.REACT_APP_API_URL}/${imageUrl}`}
 						alt={name}
 						style={{ objectFit: 'contain', padding: '16px' }}
 					/>

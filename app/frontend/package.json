@@ -3,20 +3,19 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@emotion/react": "latest",
-		"@emotion/styled": "latest",
-		"@fontsource/roboto": "latest",
-		"@mui/icons-material": "latest",
-		"@mui/lab": "latest",
-		"@mui/material": "latest",
+		"@emotion/react": "11.14.0",
+		"@emotion/styled": "11.14.0",
+		"@fontsource/roboto": "5.1.0",
+		"@mui/icons-material": "6.2.0",
+		"@mui/material": "^6.2.0",
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
-		"@mui/styled-engine-sc": "latest",
-		"@toolpad/core": "latest",
+		"@mui/styled-engine-sc": "^6.2.0",
+		"@toolpad/core": "^0.11.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.28.0",
-		"react-scripts": "^5.0.1",
-		"styled-components": "latest"
+		"styled-components": "6.1.13",
+		"react-scripts": "^5.0.1"
 	},
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
@@ -43,14 +42,17 @@
 		]
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+		"@babel/plugin-transform-private-property-in-object": "^7.25.9",
 		"@testing-library/jest-dom": "^5.11.6",
 		"@testing-library/react": "^11.2.2",
 		"@testing-library/user-event": "^12.5.0",
 		"@types/react": "^18.0.26",
 		"@types/react-dom": "^18.0.10",
-		"globals": "^15.13.0",
-		"kill-port": "^2.0.1",
 		"prettier": "^3.0.3",
 		"typescript": "^4.9.5"
+	},
+	"overrides": {
+		"react-refresh": "0.11.0"
 	}
 }

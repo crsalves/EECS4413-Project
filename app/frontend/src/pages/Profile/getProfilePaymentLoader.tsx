@@ -2,7 +2,7 @@ export async function getProfilePaymentLoader({ params }) {
 	const token = localStorage.getItem('token');
 
 	const userId = params.userId;
-	const response = await fetch(`${window.config.apiUrl}/user/${userId}/payment`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/user/${userId}/payment`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

@@ -64,12 +64,15 @@ export default function CheckoutAddressPage({ onSelectAddress }) {
 		console.log('Creating new Address Data:', JSON.stringify(newAddressData));
 
 		try {
-			console.log('Creating new address:', `${window.config.apiUrl}/user/${userContext.user.userId}/address`);
+			console.log(
+				'Creating new address:',
+				`${process.env.REACT_APP_API_URL}/user/${userContext.user.userId}/address`
+			);
 
 			// insert token here
 
 			const token = localStorage.getItem('token');
-			const response = await fetch(`${window.config.apiUrl}/user/${userContext.user.userId}/address`, {
+			const response = await fetch(`${process.env.REACT_APP_API_URL}/user/${userContext.user.userId}/address`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

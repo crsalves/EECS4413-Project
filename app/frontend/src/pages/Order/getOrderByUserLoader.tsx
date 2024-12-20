@@ -2,7 +2,7 @@ export async function getOrderByUser({ params }) {
 	const token = localStorage.getItem('token');
 	const userId = params.userId;
 
-	const response = await fetch(`${window.config.apiUrl}/order/user/` + userId, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/order/user/` + userId, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

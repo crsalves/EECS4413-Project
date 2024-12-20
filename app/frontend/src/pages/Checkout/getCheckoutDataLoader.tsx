@@ -1,5 +1,5 @@
 export async function getAddressLoader(userId) {
-	const response = await fetch(`${window.config.apiUrl}/user/${userId}/address`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/user/${userId}/address`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'

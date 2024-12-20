@@ -46,7 +46,7 @@ export default function RegistrationReviewPage({ userContact, userAddress, userP
 				password: contactInfo.password
 			};
 
-			const response = await fetch(`${window.config.apiUrl}/user`, {
+			const response = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

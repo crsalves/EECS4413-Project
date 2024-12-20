@@ -15,7 +15,7 @@ export async function addRegistrationAction({ request, params }) {
 		role: ''
 	};
 
-	const response = await fetch(`${window.config.apiUrl}/user`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
 		method: method,
 		body: JSON.stringify(registration),
 		headers: {

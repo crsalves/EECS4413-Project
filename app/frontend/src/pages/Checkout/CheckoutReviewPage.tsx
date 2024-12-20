@@ -42,7 +42,7 @@
 // 		try {
 // 			const token = localStorage.getItem('token');
 
-// 			const orderPostResponse = await fetch(`${window.config.apiUrl}/order`, {
+// 			const orderPostResponse = await fetch(`${process.env.REACT_APP_API_URL}/order`, {
 // 				method: 'POST',
 // 				body: JSON.stringify(orderData),
 // 				headers: {
@@ -57,7 +57,7 @@
 // 				console.log('Order Submitted:', responseData);
 // 				const orderId = responseData.data.orderId;
 
-// 				const orderGetResponse = await fetch(`${window.config.apiUrl}/order/` + orderId, {
+// 				const orderGetResponse = await fetch(`${process.env.REACT_APP_API_URL}/order/` + orderId, {
 // 					method: 'GET',
 // 					headers: {
 // 						'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ export default function CheckoutReviewPage({ orderAddressId, orderCardId }) {
 
 			const token = localStorage.getItem('token');
 
-			const orderPostResponse = await fetch(`${window.config.apiUrl}/order`, {
+			const orderPostResponse = await fetch(`${process.env.REACT_APP_API_URL}/order`, {
 				method: 'POST',
 				body: JSON.stringify(orderData),
 				headers: {
@@ -196,7 +196,7 @@ export default function CheckoutReviewPage({ orderAddressId, orderCardId }) {
 				console.log('Order Submitted:', responseData);
 				const orderId = responseData.data.orderId;
 
-				const orderGetResponse = await fetch(`${window.config.apiUrl}/order/` + orderId, {
+				const orderGetResponse = await fetch(`${process.env.REACT_APP_API_URL}/order/` + orderId, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',

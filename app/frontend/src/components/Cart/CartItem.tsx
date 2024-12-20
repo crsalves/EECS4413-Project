@@ -7,7 +7,11 @@ export default function CartItem({ name, price, imageUrl, quantity, onIncrease, 
 		<div>
 			<li>
 				<article>
-					<img src={`${window.config.apiUrl}/${imageUrl}`} alt={name} className={styles.productImage} />
+					<img
+						src={`${process.env.REACT_APP_API_URL}/${imageUrl}`}
+						alt={name}
+						className={styles.productImage}
+					/>
 					<div>
 						<h3>Name: {name}</h3>
 						<p>Price: {currencyFormatter.format(+price)}</p>

@@ -14,7 +14,7 @@ export default function ProductItemCard({ product, onClick }) {
 			<CardMedia
 				component="img"
 				height="150"
-				image={`${window.config.apiUrl}/${product.imageUrl}`}
+				image={`${process.env.REACT_APP_API_URL}/${product.imageUrl}`}
 				alt={product.name}
 				style={{ objectFit: 'contain', padding: '16px' }}
 			/>

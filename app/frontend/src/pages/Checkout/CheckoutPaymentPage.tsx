@@ -76,14 +76,17 @@ export default function CheckoutAdressPaymentPage({ handleSelectCard }) {
 				console.log('Adding card ', JSON.stringify(userCard));
 				const token = localStorage.getItem('token');
 
-				const response = await fetch(`${window.config.apiUrl}/user/${userContext.user.userId}/payment`, {
-					method: 'POST',
-					body: JSON.stringify(userCard),
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: token!
+				const response = await fetch(
+					`${process.env.REACT_APP_API_URL}/user/${userContext.user.userId}/payment`,
+					{
+						method: 'POST',
+						body: JSON.stringify(userCard),
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: token!
+						}
 					}
-				});
+				);
 
 				if (response.ok) {
 					console.log('Added new card', response.json());

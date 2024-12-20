@@ -6,7 +6,7 @@ export async function validateLoginAction({ request, params }) {
 		password: data.get('password')
 	};
 
-	const response = await fetch(`${window.config.apiUrl}/auth/login`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
 		method: method,
 		body: JSON.stringify(loginData),
 		headers: {

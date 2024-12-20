@@ -4,18 +4,15 @@ import ProductDetailViewPage from './pages/Product/ProductDetailViewPage';
 import { LOADER_PRODUCT_ID, getProductIdLoader } from './pages/Product/getProductIdLoader';
 import CatalogMainPage from './pages/Catalog/CatalogPage';
 import { getCatalogLoader } from './pages/Catalog/getCatalogLoader';
-// import CheckoutMainPage from './pages/Checkout/CheckoutMainPage';
 import { HomePage } from './pages/Home/HomePage';
 import LoginPage from './pages/Login/LoginPage';
 import { validateLoginAction } from './pages/Login/validateLoginAction';
-// import OrderMainPage from './pages/Order/OrderPage';
 import ProfileAccountPage from './pages/Profile/ProfileAccountPage';
 import ProfileAddressPage from './pages/Profile/ProfileAddressPage';
 import ProfilePaymentPage from './pages/Profile/ProfilePaymentPage';
 import { getProfilePaymentLoader } from './pages/Profile/getProfilePaymentLoader';
 import ProfilePage from './pages/Profile/ProfilePage';
 import { getProfileLoader } from './pages/Profile/getProfileLoader';
-//  import CategoryPage from './pages/Category/CategoryPage';
 import { getProductByCategoryLoader, LOADER_PRODUCT_BY_CATEGORY } from './pages/Category/getProductByCategoryLoader';
 import { getHomePageLoader } from './pages/Home/getHomePageLoader';
 import { RootPage } from './pages/Root/RootPage';
@@ -37,12 +34,7 @@ import { getOrdersLoader } from './pages/Order/getOrdersLoader';
 import { getProfileAddressLoader } from './pages/Profile/getProfileAddressLoader';
 import { LOADER_CATEGORY_DATA } from './pages/Catalog/getCatalogLoader';
 
-import { API_URL } from './config/config';
-
-// Set the API URL in the window object
-window.config = {
-	apiUrl: API_URL
-};
+console.log('API URL at APP:', process.env.REACT_APP_API_URL);
 
 const router = createBrowserRouter(
 	[

@@ -1,7 +1,7 @@
 export async function getCategoriesLoader() {
-	console.log('API_URL at home page', window.config.apiUrl);
+	console.log('API_URL at home page', process.env.REACT_APP_API_URL);
 
-	const response = await fetch(`${window.config.apiUrl}/category`, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/category`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'

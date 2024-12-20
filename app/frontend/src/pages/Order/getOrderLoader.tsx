@@ -2,7 +2,7 @@ export async function getOrder({ params }) {
 	const token = localStorage.getItem('token');
 	const orderId = params.orderId;
 
-	const response = await fetch(`${window.config.apiUrl}/order/` + orderId, {
+	const response = await fetch(`${process.env.REACT_APP_API_URL}/order/` + orderId, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

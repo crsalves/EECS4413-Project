@@ -19,6 +19,8 @@ COPY ./src ./src
 COPY ./public ./public
 COPY ./tsconfig.json ./tsconfig.json
 COPY ./src/global.d.ts ./src/global.d.ts
+COPY ./.env.production.local ./.env.production.local
+COPY ./.env.development.local ./.env.development.local
 
 # Install app dependencies
 RUN npm install
