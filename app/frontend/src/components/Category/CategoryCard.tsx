@@ -1,5 +1,9 @@
+/**
+ * This component is used in the HOME PAGE (HomePage.tsx) to display the category cards dynamically from database.
+ */
 import { Link } from 'react-router-dom';
 import styles from './CategoryCard.module.css';
+
 
 export default function CategoryCard({ categoryId, name, description, imageUrl }) {
 	return (

@@ -54,7 +54,7 @@
 	flex: 0 0 calc(25% - 1.5rem); /* Set card width to 25% minus the gap */
 	min-width: 200px; /* Prevent shrinking on smaller screens */
 	padding: 1rem;
-	border: 1px solid #e0e0e0;
+	border: 1px solid #d01f1f;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 	background-color: #fff;

@@ -64,7 +64,7 @@ export function HomePage() {
 			</section>
 			<section className={styles.categoriesContainer}>
 				<Link to="/catalog" className={styles.categoriesTitle}>
-					Explore All Categories
+					Explore Categories
 				</Link>
 
 				<div className={styles.categories}>
