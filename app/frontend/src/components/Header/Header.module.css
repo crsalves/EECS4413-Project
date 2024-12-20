@@ -1,0 +1,16 @@
+.headerContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f0f0f0;
+	border-bottom: 1px solid #ddd;
+	box-shadow: 0 2px 5px #f4f4f4;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+	transition:
+		background-color 0.3s ease,
+		backdrop-filter 0.3s ease;
+	opacity: 70%; /* Semi-transparent header */
+}

@@ -1,0 +1,45 @@
+.pageContainer {
+	margin: 20px auto;
+	padding: 20px;
+	max-width: 800px;
+}
+
+.title {
+	text-align: center;
+	font-size: 2rem;
+	color: #333;
+}
+
+.noOrders {
+	text-align: center;
+	font-size: 1.2rem;
+	color: #888;
+}
+
+.orderList {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.orderCard {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 15px;
+	background-color: #f9f9f9;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.orderCard h2 {
+	margin-bottom: 10px;
+	color: #555;
+}
+
+.orderCard p {
+	margin: 5px 0;
+	color: #333;
+}
+
+.orderCard strong {
+	color: #000;
+}

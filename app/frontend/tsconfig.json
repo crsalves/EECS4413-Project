@@ -1,0 +1,37 @@
+{
+	"compilerOptions": {
+		"target": "ES2020", // Specifies ECMAScript target version
+		"module": "ESNext", // Use ESNext module system for modern projects
+		"lib": ["ES2020", "DOM", "DOM.Iterable"], // Include libraries for ES2020 and DOM APIs
+		"declaration": true, // Generate .d.ts files for type definitions
+		"esModuleInterop": true, // Enable compatibility with CommonJS and ES Modules
+		"experimentalDecorators": true, // Enable support for experimental decorators
+		"forceConsistentCasingInFileNames": true, // Enforce case sensitivity in file names
+		"moduleResolution": "node", // Use Node.js module resolution
+		"noEmitOnError": true, // Prevent output files if there are errors
+		"noFallthroughCasesInSwitch": true, // Ensure all switch cases have breaks or returns
+		"noImplicitReturns": true, // Ensure all code paths in functions return
+		"noImplicitAny": false, // Allow variables to implicitly have an 'any' type
+		"noUnusedLocals": true, // Report unused local variables
+		"skipLibCheck": true, // Skip type checking of declaration files
+		"sourceMap": true, // Generate source maps for debugging
+		"strict": true, // Enable all strict type-checking options
+		"strictNullChecks": true, // Ensure strict handling of null and undefined
+		"allowJs": true, // Allow JavaScript files in the project
+		"allowSyntheticDefaultImports": true, // Allow default imports for modules without a default export
+		"resolveJsonModule": true, // Enable importing JSON files
+		"isolatedModules": true, // Ensure each file can be safely transpiled
+		"noEmit": true, // Prevent emitting output files
+		"jsx": "react-jsx", // Enable JSX support for React
+		"baseUrl": ".", // Base directory for non-relative module imports
+		"paths": {
+			// Path aliases for cleaner imports
+			"@components/*": ["src/components/*"],
+			"@utils/*": ["src/utils/*"],
+			"@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+		}
+	},
+	"include": ["src", "global.d.ts"], // Specify files or directories to include in the compilation
+	"exclude": ["node_modules", "dist"], // Exclude node_modules and build output directories
+	"compileOnSave": false // Optional: Disable recompilation on saving files
+}

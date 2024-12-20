@@ -1,0 +1,23 @@
+.navContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between; /* Balanced navigation */
+	padding: 0.5em 3em;
+}
+
+.link {
+	background-color: transparent; /* Transparent to blend with header */
+	color: #061977;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 0.5em;
+	transition:
+		color 0.3s ease,
+		background-color 0.3s ease,
+		transform 0.5s ease; /* Added smooth transform transition */
+}
+
+.link:hover {
+	transform: scale(1.1); /* Slight scale for better UX */
+	border-radius: 5px; /* Rounded corners for cleaner look */
+}

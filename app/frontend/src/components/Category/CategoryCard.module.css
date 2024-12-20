@@ -1,0 +1,144 @@
+/* Categories Section Container */
+.categoriesContainer {
+	flex: 0 0 calc(25% - 1.5rem); /* Set card width to 25% minus the gap */
+	min-width: 200px; /* Prevent shrinking on smaller screens */
+	background-color: #f9f9f9;
+	position: relative;
+	margin: 2rem auto;
+	padding: 1.5rem;
+	display: flex; /* Display categories horizontally */
+	flex-wrap: wrap; /* Allow wrapping when content overflows */
+	gap: 1.5rem; /* Space between category cards */
+	justify-content: center; /* Center items horizontally */
+	align-items: flex-start; /* Align items to the top */
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+	overflow: hidden;
+}
+
+/* Title for Categories Section */
+.categoriesTitle {
+	text-decoration: none;
+	color: #2a3d9c;
+	font-weight: bold;
+	font-size: 1.8rem;
+	text-align: center;
+	width: 100%; /* Full width */
+	margin-bottom: 1rem;
+	transition:
+		transform 0.2s ease-in-out,
+		color 0.3s ease;
+}
+
+.categoriesTitle:hover {
+	transform: scale(1.05);
+	text-decoration: underline;
+	color: #b68509; /* Hover color */
+}
+
+/* Background Image (Positioned Inside Categories) */
+.categoryImage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: scale-down;
+	opacity: 0.1; /* Low opacity */
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* Category Card Styles */
+.category {
+	flex: 0 0 calc(25% - 1.5rem); /* Set card width to 25% minus the gap */
+	min-width: 200px; /* Prevent shrinking on smaller screens */
+	padding: 1rem;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+	background-color: #fff;
+	text-align: center;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	position: relative; /* To ensure z-index works properly */
+	z-index: 2;
+	display: flex; /* Align items horizontally */
+}
+
+/* Hover Effect for Category */
+.category:hover {
+	transform: translateY(-8px); /* Lift the card */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add stronger shadow */
+}
+
+/* Category Link Styling */
+.categoryLink {
+	text-decoration: none;
+	color: #2a3d9c;
+	font-weight: bold;
+	transition: color 0.3s ease;
+}
+
+.categoryLink:hover {
+	color: #b68509;
+}
+
+/* Scrollable Horizontal Categories (Optional) */
+.categories {
+	display: flex;
+	gap: 1.5rem;
+	overflow-x: auto; /* Enable horizontal scrolling */
+	scroll-behavior: smooth;
+	padding: 1rem 0;
+}
+
+.categories::-webkit-scrollbar {
+	display: none; /* Hide scrollbar */
+}
+
+/* Edge Gradients for Horizontal Scroll */
+.categoriesContainer::before,
+.categoriesContainer::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	width: 40px;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.categoriesContainer::before {
+	left: 0;
+	background: linear-gradient(to right, #f9f9f9, transparent);
+}
+
+.categoriesContainer::after {
+	right: 0;
+	background: linear-gradient(to left, #f9f9f9, transparent);
+}
+
+/* Responsive Design for Medium Screens */
+@media (max-width: 768px) {
+	.categoriesContainer {
+		gap: 1rem; /* Reduce gap between category cards */
+	}
+
+	.category {
+		flex: 0 0 200px; /* Smaller card width */
+	}
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 480px) {
+	.categoriesContainer {
+		flex-direction: column; /* Stack categories vertically */
+		padding: 1rem; /* Reduce padding */
+	}
+
+	.category {
+		width: 100%; /* Full width */
+	}
+}

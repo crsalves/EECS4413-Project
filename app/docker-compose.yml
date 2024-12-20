@@ -1,0 +1,66 @@
+#  The configuration for Docker Compose services for the application to
+#  run the project in a containerized environment using Docker Compose.
+#
+# @file: docker-compose.yml
+# @author: Carla da Silva Alves
+
+services:
+  # Database service for the Pet Store application.
+  # The database service uses the "MySQL image" from Docker Hub.
+  # It is the main application service that the API and UI services depend on and runs on port 3307.
+  database-pet-store:
+    image: mysql:8.0 # this container uses an image from docker hub using "docker pull" command under the hood
+    container_name: database-pet-store
+    hostname: database-pet-store
+    volumes:
+      - "./database/scripts.sql:/docker-entrypoint-initdb.d/1.sql"
+    ports:
+      - "3306:3306"
+    networks:
+      - pet-store
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+
+  # Backend service for the Pet Store application.
+  # The backend service is built from the Dockerfile in the backend directory.
+  # It depends on the database service and is exposed on port 8080.
+  backend-pet-store:
+    build: ./backend
+    container_name: backend-pet-store
+    hostname: backend-pet-store
+    depends_on:
+      - database-pet-store
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST_ALIAS: ${DB_HOST_ALIAS}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    networks:
+      - pet-store
+
+  # Frontend service for the Pet Store application.
+  # The frontend service is built from the Dockerfile in the frontend directory.
+  # It depends on the database and backend services and is exposed on port 3000.
+  # The frontend application is accessible at http://localhost:3000.
+  frontend-pet-store:
+    image: frontend-pet-store
+    build: ./frontend
+    container_name: frontend-pet-store
+    hostname: frontend-pet-store
+    depends_on:
+      - database-pet-store
+      - backend-pet-store
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: ${REACT_APP_API_URL}
+    networks:
+      - pet-store
+
+networks:
+  pet-store:
+    name: pet-store
+    driver: bridge

@@ -1,0 +1,8 @@
+.root {
+	font-family: Times, serif;
+}
+
+.rootContainer {
+	padding-top: 7em; /* Ensure no overlap with the fixed header */
+	padding-bottom: 5em;
+}
