@@ -1,8 +1,13 @@
+/* Ensure the root container takes full viewport height */
 .root {
-	font-family: Times, serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
 }
 
 .rootContainer {
-	padding-top: 7em; /* Ensure no overlap with the fixed header */
-	padding-bottom: 5em;
+    flex: 1; /* Allows the main content to grow and push the footer */
+    padding-top: 7em; /* Ensure no overlap with the fixed header */
+    padding-bottom: 5em;
 }

@@ -1,40 +1,36 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import CartPage from './pages/Cart/CartPage';
-import ProductDetailViewPage from './pages/Product/ProductDetailViewPage';
-import { LOADER_PRODUCT_ID, getProductIdLoader } from './pages/Product/getProductIdLoader';
-import CatalogMainPage from './pages/Catalog/CatalogPage';
-import { getCatalogLoader } from './pages/Catalog/getCatalogLoader';
-import { HomePage } from './pages/Home/HomePage';
-import LoginPage from './pages/Login/LoginPage';
-import { validateLoginAction } from './pages/Login/validateLoginAction';
-import ProfileAccountPage from './pages/Profile/ProfileAccountPage';
-import ProfileAddressPage from './pages/Profile/ProfileAddressPage';
-import ProfilePaymentPage from './pages/Profile/ProfilePaymentPage';
-import { getProfilePaymentLoader } from './pages/Profile/getProfilePaymentLoader';
-import ProfilePage from './pages/Profile/ProfilePage';
-import { getProfileLoader } from './pages/Profile/getProfileLoader';
-import { getProductByCategoryLoader, LOADER_PRODUCT_BY_CATEGORY } from './pages/Category/getProductByCategoryLoader';
-import { getHomePageLoader } from './pages/Home/getHomePageLoader';
-import { RootPage } from './pages/Root/RootPage';
-
+import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import AdminOrdersPage from './pages/Admin/AdminOrdersPage';
 import AdminProductsPage from './pages/Admin/AdminProductsPage';
-import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import AdminRootPage from './pages/Admin/AdminRootPage';
 import AdminUsersPage from './pages/Admin/AdminUsersPage';
-import { productSearchLoader, LOADER_PRODUCT_SEARCH } from './pages/Product/productSearchLoader';
+import CartPage from './pages/Cart/CartPage';
+import CatalogMainPage from './pages/Catalog/CatalogPage';
+import { LOADER_CATEGORY_DATA, getCatalogLoader } from './pages/Catalog/getCatalogLoader';
+import { LOADER_PRODUCT_BY_CATEGORY, getProductByCategoryLoader } from './pages/Category/getProductByCategoryLoader';
+import CheckoutRootPage from './pages/Checkout/CheckoutRootPage';
+import { HomePage } from './pages/Home/HomePage';
+import { getHomePageLoader } from './pages/Home/getHomePageLoader';
+import LoginPage from './pages/Login/LoginPage';
+import { validateLoginAction } from './pages/Login/validateLoginAction';
+import OrderByUserPage from './pages/Order/OrderByUserPage';
 import OrderViewPage from './pages/Order/OrderViewPage';
+import { getOrderByUserLoader } from './pages/Order/getOrderByUserLoader';
 import { getOrderLoader } from './pages/Order/getOrderLoader';
+import { getOrdersLoader } from './pages/Order/getOrdersLoader';
+import ProductDetailViewPage from './pages/Product/ProductDetailViewPage';
+import { LOADER_PRODUCT_ID, getProductIdLoader } from './pages/Product/getProductIdLoader';
+import { LOADER_PRODUCT_SEARCH, productSearchLoader } from './pages/Product/productSearchLoader';
+import ProfileAccountPage from './pages/Profile/ProfileAccountPage';
+import ProfileAddressPage from './pages/Profile/ProfileAddressPage';
+import ProfilePage from './pages/Profile/ProfilePage';
+import ProfilePaymentPage from './pages/Profile/ProfilePaymentPage';
+import { getProfileAddressLoader } from './pages/Profile/getProfileAddressLoader';
+import { getProfileLoader } from './pages/Profile/getProfileLoader';
+import { getProfilePaymentLoader } from './pages/Profile/getProfilePaymentLoader';
 import RegistrationPage from './pages/Registration/RegistrationPage';
 import { addRegistrationAction } from './pages/Registration/addRegistrationAction';
-import CheckoutRootPage from './pages/Checkout/CheckoutRootPage';
-import OrderByUserPage from './pages/Order/OrderByUserPage';
-import { getOrderByUserLoader } from './pages/Order/getOrderByUserLoader';
-import { getOrdersLoader } from './pages/Order/getOrdersLoader';
-import { getProfileAddressLoader } from './pages/Profile/getProfileAddressLoader';
-import { LOADER_CATEGORY_DATA } from './pages/Catalog/getCatalogLoader';
-
-console.log('API URL at APP:', process.env.REACT_APP_API_URL);
+import { RootPage } from './pages/Root/RootPage';
 
 const router = createBrowserRouter(
 	[

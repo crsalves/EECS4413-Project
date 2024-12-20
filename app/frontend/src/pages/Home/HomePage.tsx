@@ -38,7 +38,7 @@ export function HomePage() {
 
 						<h3>Shop Premium Products</h3>
 						<p>Explore our wide range of high-quality pet products.</p>
-						<Link to="/shop" className={styles.btn}>
+						<Link to="#shop" className={styles.btn}>
 							Shop Now
 						</Link>
 					</div>
@@ -47,7 +47,7 @@ export function HomePage() {
 
 						<h3>Exclusive Deals</h3>
 						<p>Check out our weekly specials and discounts.</p>
-						<Link to="/shop" className={styles.btn}>
+						<Link to="#shop" className={styles.btn}>
 							View Deals
 						</Link>
 					</div>
