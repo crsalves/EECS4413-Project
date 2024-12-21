@@ -36,7 +36,7 @@
 	gap: 1rem;
 	align-items: center;
 	width: 100% !important;
-	min-width: 300px;
+	min-width: 300px !important;
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
