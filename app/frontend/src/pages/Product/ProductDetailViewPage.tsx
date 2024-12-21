@@ -162,6 +162,7 @@ export default function ProductDetailViewPage() {
 										>
 											-
 										</Button>
+										{cartContext.items.find((item) => item.id === product.productId)?.quantity || 0}
 										<Button
 											variant="contained"
 											color="primary"

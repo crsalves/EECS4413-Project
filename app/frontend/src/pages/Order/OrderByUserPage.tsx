@@ -58,7 +58,7 @@ export default function OrderByUserPage() {
 				) : (
 					<Grid container spacing={3} className={styles.orderList}>
 						{ordersWithAddressAndCard.map((order) => (
-							<Grid item xs={12} md={6} lg={4} key={order.orderId} >
+							<Grid item xs={12} md={6} lg={4} key={order.orderId}>
 								<Card className={styles.orderCards}>
 									<CardContent className={styles.orderCardContent}>
 										<Typography variant="h6" gutterBottom>
@@ -68,13 +68,10 @@ export default function OrderByUserPage() {
 											<strong>Order ID:</strong> {order.orderId}
 										</Typography>
 										<Typography variant="body1">
-											<strong>User ID:</strong> {order.userId}
-										</Typography>
-										<Typography variant="body1">
 											<strong>Total Price:</strong> ${order.totalPrice}
 										</Typography>
 										<Typography variant="body1">
-											<strong>Status:</strong> {order.status}
+											<strong>Status:</strong> Approved
 										</Typography>
 										{order.orderAddress && (
 											<>
