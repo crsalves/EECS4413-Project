@@ -14,7 +14,7 @@
 
 .orderList {
 	width: 100%;
-	min-width: 1000px;
+	min-width: 1000px !important;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 	text-align: left;
