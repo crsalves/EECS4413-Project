@@ -202,7 +202,7 @@ export class UserController {
 		}
 	}
 
-	async editUserAddressById(id: number, updates: Partial<User>): Promise<{ success: boolean; message: string }> {
+	async editUserAddressById(id: number, updates: any): Promise<{ success: boolean; message: string }> {
 		try {
 			const existingUserAddress = await this.getUserAddressById(id);
 

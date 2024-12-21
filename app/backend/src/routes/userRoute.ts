@@ -188,8 +188,6 @@ userRouter.put(
 		const userAddressId = parseInt(req.params.userAddressId, 10);
 		const updates = req.body;
 
-		console.log('userAddressId', userAddressId);
-
 		if (isNaN(userAddressId) || userAddressId <= 0) {
 			return res.status(400).json({ message: 'Invalid user ID.' });
 		}

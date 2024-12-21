@@ -1,0 +1,72 @@
+.pageContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.orderList {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	text-align: left;
+	font-size: 16px;
+	color: #333;
+	background-color: #fef8f2;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	overflow-x: auto;
+	padding: 10px;
+	display: flex;
+	position: relative;
+	overflow-y: auto;
+	justify-content: center;
+}
+
+.orderCards {
+	justify-content: center;
+	gap: 1rem;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.orderCardContent {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+	padding: 1rem;
+}
+
+.orderCardContent h6 {
+	font-weight: bold;
+	color: #2a9d8f;
+	text-align: center;
+	margin: 1rem;
+}
+
+.orderCardContent p {
+	margin: 0;
+}
+
+@media (max-width: 600px) {
+	.orderList {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 400px) {
+	.orderList {
+		font-size: 12px;
+	}
+}

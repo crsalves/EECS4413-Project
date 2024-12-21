@@ -1,6 +1,7 @@
 import ReusableModal from '../../components/Modal/Modal';
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfilePasswordSectionPage({ userData }) {
 	const userSecurityInfo = {
@@ -10,6 +11,7 @@ export default function ProfilePasswordSectionPage({ userData }) {
 	};
 
 	const [user, setUser] = useState(userSecurityInfo);
+	const navigate = useNavigate();
 
 	const [open, setOpen] = useState(false);
 	const [formData, setFormData] = useState<{
@@ -85,6 +87,19 @@ export default function ProfilePasswordSectionPage({ userData }) {
 				onClose={handleClose}
 				onSubmit={handleSubmit}
 			/>
+
+			<Box>
+				<br />
+				<br />
+				<Button
+					onClick={() => {
+						navigate('/user/' + userSecurityInfo.userId);
+					}}
+					variant="contained"
+				>
+					Back to Account
+				</Button>
+			</Box>
 		</div>
 	);
 }

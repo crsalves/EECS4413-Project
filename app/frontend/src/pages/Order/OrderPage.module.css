@@ -43,3 +43,54 @@
 .orderCard strong {
 	color: #000;
 }
+
+
+.pageContainer {
+	padding: 20px;
+  }
+  
+  .title {
+	margin-bottom: 20px;
+	text-align: center;
+  }
+  
+  .noOrders {
+	text-align: center;
+	margin-top: 20px;
+  }
+  
+  .orderList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+  }
+  
+  .orderCard {
+	width: 100%;
+	max-width: 400px;
+	margin: auto;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	transition: transform 0.2s;
+  }
+  
+  .orderCard:hover {
+	transform: scale(1.05);
+  }
+  
+  .cardContent {
+	padding: 16px;
+  }
+  
+  .cardTitle {
+	margin-bottom: 16px;
+	font-weight: bold;
+  }
+  
+  .cardSectionTitle {
+	margin-top: 16px;
+	margin-bottom: 8px;
+	font-weight: bold;
+  }

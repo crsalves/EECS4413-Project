@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 import {
+	Box,
 	Table,
 	TableBody,
 	TableCell,
@@ -22,6 +23,7 @@ import {
 import { Delete, Edit } from '@mui/icons-material';
 import { useEffect, useContext } from 'react';
 import AuthenticationContext from 'src/store/AuthenticationContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfilePaymentPage() {
 	const userContext = useContext(AuthenticationContext);
@@ -31,6 +33,7 @@ export default function ProfilePaymentPage() {
 		data: any;
 	};
 	const userData = loaderData.data;
+	const navigate = useNavigate();
 
 	console.log('This is the initia; data', userData);
 
@@ -76,8 +79,8 @@ export default function ProfilePaymentPage() {
 		cardNumber: '',
 		expiryDate: '',
 		cvv: '',
-		paymentTypeId: '',
-		isDefault: ''
+		paymentTypeId: '1',
+		isDefault: false
 	});
 	const [editMode, setEditMode] = useState(false);
 
@@ -101,8 +104,8 @@ export default function ProfilePaymentPage() {
 				cardNumber: '',
 				expiryDate: '',
 				cvv: '',
-				paymentTypeId: '',
-				isDefault: ''
+				paymentTypeId: '1',
+				isDefault: false
 			});
 			setEditMode(false);
 		}
@@ -201,10 +204,10 @@ export default function ProfilePaymentPage() {
 	return (
 		<div style={{ padding: '20px' }}>
 			<Typography variant="h4" gutterBottom>
-				Address Management
+				Billing Information
 			</Typography>
 			<Button variant="contained" color="primary" onClick={() => handleOpen()}>
-				Add Product
+				Add Card
 			</Button>
 
 			{/* Product Table */}
@@ -212,12 +215,10 @@ export default function ProfilePaymentPage() {
 				<Table>
 					<TableHead>
 						<TableRow>
-							<TableCell>Street</TableCell>
-							<TableCell>Complement</TableCell>
-							<TableCell>City</TableCell>
+							<TableCell>Card Number</TableCell>
+							<TableCell>Expire Date</TableCell>
 							<TableCell>Provicnce</TableCell>
-							<TableCell>Countery</TableCell>
-							<TableCell>Postal Cod ID</TableCell>
+							<TableCell>Cvv</TableCell>
 							<TableCell>Is Default</TableCell>
 						</TableRow>
 					</TableHead>
@@ -227,7 +228,7 @@ export default function ProfilePaymentPage() {
 								<TableCell>{user.cardNumber}</TableCell>
 								<TableCell>{user.expiryDate}</TableCell>
 								<TableCell>{user.cvv}</TableCell>
-								<TableCell>{user.paymentTypeId}</TableCell>
+
 								<TableCell>{user.isDefault}</TableCell>
 
 								<TableCell>
@@ -243,6 +244,23 @@ export default function ProfilePaymentPage() {
 					</TableBody>
 				</Table>
 			</TableContainer>
+
+			<Box>
+				<br />
+				<br />
+			</Box>
+
+			<Box>
+				<Button
+					onClick={() => {
+						navigate('/user/' + userContext.user.userId);
+					}}
+					variant="contained"
+				>
+					Back to Account
+				</Button>
+			</Box>
+
 			{/* Add/Edit Modal */}
 			<Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
 				<DialogTitle>{editMode ? 'Edit Card' : 'Add Card'}</DialogTitle>
@@ -271,15 +289,6 @@ export default function ProfilePaymentPage() {
 						fullWidth
 						margin="normal"
 					/>
-					<TextField
-						label="paytmentTypeId"
-						name="paytmentTypeId"
-						value={formData.paymentTypeId}
-						onChange={handleChange}
-						fullWidth
-						margin="normal"
-					/>
-
 					<FormControlLabel
 						control={
 							<Checkbox
@@ -297,9 +306,9 @@ export default function ProfilePaymentPage() {
 						Cancel
 					</Button>
 					<Button onClick={handleSubmit} color="primary">
-						{editMode ? 'Update' : 'Add'}
+						{editMode ? (loading ? 'Updating...' : 'Update') : 'Add'}
 					</Button>
-					{loading ? 'Placing Order...' : 'Place Order'}
+
 					{error && <p style={{ color: 'red' }}>{error}</p>}
 				</DialogActions>
 			</Dialog>

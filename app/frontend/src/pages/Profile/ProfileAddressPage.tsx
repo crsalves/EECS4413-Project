@@ -17,11 +17,13 @@ import {
 	IconButton,
 	Typography,
 	Checkbox,
-	FormControlLabel
+	FormControlLabel,
+	Box
 } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { useEffect, useContext } from 'react';
 import AuthenticationContext from 'src/store/AuthenticationContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileAddressPage() {
 	const userContext = useContext(AuthenticationContext);
@@ -68,6 +70,7 @@ export default function ProfileAddressPage() {
 
 	const [error, setError] = useState<String | null>();
 	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
 	const [open, setOpen] = useState(false);
 	const [formData, setFormData] = useState<{
@@ -143,8 +146,7 @@ export default function ProfileAddressPage() {
 		if (editMode) {
 			try {
 				const updateData = {
-					userAddressId: formData.userAddressId,
-					userId: formData.userId,
+					userId: userContext.user.userId,
 					street: formData.street,
 					complement: formData.street,
 					city: formData.city,
@@ -224,13 +226,13 @@ export default function ProfileAddressPage() {
 	return (
 		<div style={{ padding: '20px' }}>
 			<Typography variant="h4" gutterBottom>
-				Address Management
+				Address Information
 			</Typography>
 			<Button variant="contained" color="primary" onClick={() => handleOpen()}>
-				Add Product
+				Add Address
 			</Button>
 
-			{/* Product Table */}
+			{/* User Table */}
 			<TableContainer component={Paper} style={{ marginTop: '20px' }}>
 				<Table>
 					<TableHead>
@@ -242,6 +244,7 @@ export default function ProfileAddressPage() {
 							<TableCell>Countery</TableCell>
 							<TableCell>Postal Cod ID</TableCell>
 							<TableCell>Is Default</TableCell>
+							<TableCell></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -253,6 +256,7 @@ export default function ProfileAddressPage() {
 								<TableCell>{user.province}</TableCell>
 								<TableCell>{user.country}</TableCell>
 								<TableCell>{user.postalCode}</TableCell>
+								<TableCell>{user.isDefault === true ? 'Yes' : 'No'}</TableCell>
 								<TableCell>
 									<IconButton color="primary" onClick={() => handleOpen(user)}>
 										<Edit />
@@ -266,9 +270,23 @@ export default function ProfileAddressPage() {
 					</TableBody>
 				</Table>
 			</TableContainer>
+
+			<Box>
+				<br />
+				<br />
+				<Button
+					onClick={() => {
+						navigate('/user/' + userContext.user.userId);
+					}}
+					variant="contained"
+				>
+					Back to Account
+				</Button>
+			</Box>
+
 			{/* Add/Edit Modal */}
 			<Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-				<DialogTitle>{editMode ? 'Edit Product' : 'Add Product'}</DialogTitle>
+				<DialogTitle>{editMode ? 'Edit Address' : 'Add Address'}</DialogTitle>
 				<DialogContent>
 					<TextField
 						label="Street"
@@ -321,10 +339,12 @@ export default function ProfileAddressPage() {
 					<FormControlLabel
 						control={
 							<Checkbox
-								checked={true ? formData.isDefault === '1' : false}
-								onChange={handleChange}
+								checked={true ? formData.isDefault === true : false}
+								onChange={() => {
+									setFormData({ ...formData, isDefault: !formData.isDefault });
+								}}
 								name="isDefault"
-								value={true ? formData.isDefault === '1' : false}
+								value={true ? formData.isDefault === true : false}
 							/>
 						}
 						label="Is Default"
@@ -335,9 +355,9 @@ export default function ProfileAddressPage() {
 						Cancel
 					</Button>
 					<Button onClick={handleSubmit} color="primary">
-						{editMode ? 'Update' : 'Add'}
+						{editMode ? (loading ? 'Updating...' : 'Update') : loading ? 'Adding...' : 'Add'}
 					</Button>
-					{loading ? 'Placing Order...' : 'Place Order'}
+
 					{error && <p style={{ color: 'red' }}>{error}</p>}
 				</DialogActions>
 			</Dialog>

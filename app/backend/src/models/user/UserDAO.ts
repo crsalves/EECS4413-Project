@@ -12,8 +12,8 @@ import { Pool } from 'mysql2/promise';
 export class UserDAO {
 	private static pool: Pool;
 	static async init() {
-        UserDAO.pool = await getConnectionPool();
-    }
+		UserDAO.pool = await getConnectionPool();
+	}
 
 	/**
 	 * @returns {Promise<User[]>} - selects all users from the database.
@@ -88,7 +88,6 @@ export class UserDAO {
 	 */
 	async selectUserByEmail(email: string): Promise<any> {
 		try {
-
 			console.log('Querying user by email:', email);
 
 			const query = 'SELECT * FROM `user` WHERE email = ?';
@@ -100,7 +99,6 @@ export class UserDAO {
 			if (results?.length === 0 || !results) {
 				return { statusCode: 404, message: 'User not found.' };
 			}
-
 
 			const row = results[0];
 			return {
@@ -341,21 +339,27 @@ export class UserDAO {
 		try {
 			const query = `
             UPDATE user_address
-            SET street = COALESCE(?, street),
+            SET user_id = COALESCE(?, user_id),
+			    street = COALESCE(?, street),
 				complement = COALESCE(?, complement),
+				city = COALESCE(?, city),
 				province = COALESCE(?, province),
 				country = COALESCE(?, country),
 				postal_code = COALESCE(?, postal_code),
 				is_default = COALESCE(?, is_default)
             WHERE user_address_id = ?
         `;
+
+
 			const [results]: any = await UserDAO.pool.query(query, [
+				user.userId,
 				user.street,
 				user.complement,
+				user.city,
 				user.province,
 				user.country,
-				user.postal_code,
-				user.is_default,
+				user.postalCode,
+				user.isDefault,
 				id
 			]);
 

@@ -27,7 +27,9 @@ export default function CheckoutReviewPage({ orderAddressId, orderCardId }) {
 	const userPayment = userContext.userPayment;
 	const userAddress = userContext.userAddress;
 
-	const orderAddress = userAddress ? userAddress.find((address) => address.userAddressId === orderAddressId) : null;
+	const orderAddress = userAddress
+		? userAddress.find((address) => address.userAddressId === parseInt(orderAddressId))
+		: null;
 	const cardData = userPayment ? userPayment.find((card) => card.userPaymentId === orderCardId) : null;
 
 	const [items] = useState(cartContext.items);
@@ -40,6 +42,10 @@ export default function CheckoutReviewPage({ orderAddressId, orderCardId }) {
 
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
+
+	console.log('Order Address:', JSON.stringify(orderAddress));
+	console.log('User Address:', JSON.stringify(userAddress));
+	console.log('orderAddressId:', JSON.stringify(orderAddressId));
 
 	const handleConfirmOrder = async () => {
 		setLoading(true);
