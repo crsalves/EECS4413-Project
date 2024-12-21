@@ -1,40 +1,53 @@
-// import { Form, Link, useActionData, useLocation, useNavigate } from 'react-router-dom';
-import styles from './LoginPage.module.css';
-import { useContext, useEffect, useState } from 'react';
-import { Form, Link, useActionData, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, TextField, Button, Typography, Box, Alert, CircularProgress } from '@mui/material';
 import AuthenticationContext from '../../store/AuthenticationContext';
+import { Link } from 'react-router-dom';
+import styles from './LoginPage.module.css';
 
 export interface User {
 	userId: number;
 	name: string;
 	email: string;
 	phone?: string;
-
 	role?: 'customer' | 'admin';
 }
 
-interface LoginActionData {
-	token: string;
-	user: User;
-	userAddress?: any;
-	userPayment?: any;
-}
-
 export default function LoginPage() {
-	let errorMessage;
-	const [error, setError] = useState<String>();
 	const userContext = useContext(AuthenticationContext);
+	const [errorMessage, setErrorMessage] = useState('');
+	const [loading, setLoading] = useState(false);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 	const navigate = useNavigate();
 
-	const loginActionData = useActionData() as LoginActionData;
+	const handleLogin = async (event: React.FormEvent) => {
+		event.preventDefault();
+		setErrorMessage('');
+		setLoading(true);
 
-	useEffect(() => {
-		if (loginActionData && loginActionData.token && loginActionData.user) {
-			const token = loginActionData.token;
+		try {
+			const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email, password })
+			});
 
-			const user = loginActionData.user;
-			const userAddress = loginActionData.userAddress;
-			const userPayment = loginActionData.userPayment;
+			if (!response.ok) {
+				const errorData = await response.json();
+				console.log('Error from the api', errorData);
+				setErrorMessage(errorData.message || 'Login failed');
+				return;
+			}
+
+			const userData = await response.json();
+			const token = userData.token;
+
+			const user = userData.user;
+			const userAddress = userData.userAddress;
+			const userPayment = userData.userPayment;
 
 			if (token !== null && token!) {
 				userContext.onLogin(token, user, userAddress, userPayment);
@@ -47,63 +60,64 @@ export default function LoginPage() {
 			} else {
 				userContext.onLogout();
 			}
-		} else if (loginActionData && loginActionData.user === undefined) {
-			setError('Login failed - Username and password ...');
+		} catch (error) {
+			setErrorMessage('An error occurred. Please try again.');
+		} finally {
+			setLoading(false);
 		}
-	}, [loginActionData, userContext, navigate]);
-
-	if (error) {
-		errorMessage = <p>{error}</p>;
-	}
+	};
 
 	return (
-		<div className={styles.container}>
-			{userContext.isLoggedInContext}
-			{!userContext.isLoggedInContext && (
-				<div className={styles.formContainer}>
-					<Form method="POST">
-						<h2>Log in</h2>
-						<div className={styles.message}>
-							<section>{errorMessage}</section>
-						</div>
+		<Container maxWidth="sm">
+			{userContext.isLoggedInContext ? (
+				<Typography variant="h6">You are already logged in</Typography>
+			) : (
+				<Box component="form" onSubmit={handleLogin} sx={{ mt: 3 }}>
+					<Typography variant="h4" component="h1" gutterBottom>
+						Log in
+					</Typography>
+					{errorMessage && (
+						<Alert severity="error" sx={{ mb: 2 }}>
+							{errorMessage}
+						</Alert>
+					)}
+					<TextField
+						id="email"
+						label="Email"
+						type="email"
+						name="email"
+						fullWidth
+						required
+						autoFocus
+						margin="normal"
+						placeholder="Enter your email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+					<TextField
+						id="password"
+						label="Password"
+						type="password"
+						name="password"
+						fullWidth
+						required
+						margin="normal"
+						placeholder="Enter your password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
 
-						<div className={styles.inputGroup}>
-							<label htmlFor="email">Email</label>
-							<input
-								id="email"
-								type="email"
-								name="email"
-								pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+$" // TODO: add regex for preventing spaces
-								required
-								autoFocus
-								placeholder="Enter your email"
-							/>
-						</div>
+					<Box textAlign="center" mt={3}>
+						{loading ? (
+							<CircularProgress />
+						) : (
+							<Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+								Log in
+							</Button>
+						)}
+					</Box>
 
-						<div className={styles.inputGroup}>
-							<label htmlFor="password">Password</label>
-							<input
-								id="password"
-								type="password"
-								name="password"
-								pattern="[^\s]+"
-								required
-								autoComplete="current-password"
-								placeholder="Enter your password"
-							/>
-						</div>
-
-						<div className={styles.checkbox}>
-							<input type="checkbox" id="remember" />
-							<label htmlFor="remember">Remember me</label>
-						</div>
-
-						<div>
-							<button className={styles.button} type="submit">
-								Submit
-							</button>
-						</div>
-
+					<Box sx={{ mt: 2 }}>
 						<div className={styles.link}>
 							<Link to="#" className={styles.link}>
 								Forgot password?
@@ -112,9 +126,9 @@ export default function LoginPage() {
 								Don't have an account?
 							</Link>
 						</div>
-					</Form>
-				</div>
+					</Box>
+				</Box>
 			)}
-		</div>
+		</Container>
 	);
 }

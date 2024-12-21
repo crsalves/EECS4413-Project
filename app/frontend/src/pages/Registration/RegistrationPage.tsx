@@ -4,7 +4,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 
 import RegistrationContactPage from './RegistrationContactPage';
 import RegistrationAddressPage from './RegistrationAddressPage';
@@ -74,8 +74,6 @@ export default function RegistrationRootPage() {
 
 	const handleSkip = () => {
 		if (!isStepOptional(activeStep)) {
-			// You probably want to guard against something like this,
-			// it should never occur unless someone's actively trying to break something.
 			throw new Error("You can't skip a step that isn't optional.");
 		}
 
@@ -90,17 +88,27 @@ export default function RegistrationRootPage() {
 	const handleReset = () => {
 		setActiveStep(0);
 	};
-	const handleAddAddress = (address) => {
+	const handleAddAddress = (address, errors) => {
+		if (errors.province || errors.postalCode) {
+			return;
+		}
+
 		setUserAddress(address);
 		handleNext();
 	};
 
-	const handleAddPayment = (card) => {
+	const handleAddPayment = (card, errors) => {
+		if (errors.cardNumber || errors.expiryDate || errors.cvv) {
+			return;
+		}
 		setUserPayment(card);
 		handleNext();
 	};
 
-	const handleAddContact = (contact) => {
+	const handleAddContact = (contact, errors) => {
+		if (errors.email || errors.phone || errors.password) {
+			return;
+		}
 		setUserContact(contact);
 		handleNext();
 	};

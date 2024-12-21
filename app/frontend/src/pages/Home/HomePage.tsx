@@ -23,10 +23,34 @@ export function HomePage() {
 				</div>
 				<div className={styles.bannerContent}>
 					<h1 className={styles.companyName}>Cyber Pet&apos;s</h1>
-					<h2>Get your pet's supplies in clicks</h2>
+					<h2>Get your pet's supplies in clicks!</h2>
 				</div>
 				<div className={styles.bannerImageRight}>
 					<img src={IMAGE_PATH + '/bannerRight.png'} alt="Right Banner Image" />
+				</div>
+			</section>
+			<section className={styles.categoriesContainer}>
+				<Link to="/catalog" className={styles.categoriesTitle}>
+					Explore Categories
+				</Link>
+
+				<div className={styles.categories}>
+					{categoriesData.map(
+						(category: {
+							categoryId: number;
+							name: string;
+							description: string | null;
+							imageUrl: string | null;
+						}) => (
+							<CategoryCard
+								key={category.categoryId}
+								categoryId={category.categoryId}
+								name={category.name}
+								description={category.description}
+								imageUrl={category.imageUrl || IMAGE_PATH + '/logo-background.png'}
+							></CategoryCard>
+						)
+					)}
 				</div>
 			</section>
 
@@ -60,30 +84,6 @@ export function HomePage() {
 							Learn More
 						</a>
 					</div>
-				</div>
-			</section>
-			<section className={styles.categoriesContainer}>
-				<Link to="/catalog" className={styles.categoriesTitle}>
-					Explore Categories
-				</Link>
-
-				<div className={styles.categories}>
-					{categoriesData.map(
-						(category: {
-							categoryId: number;
-							name: string;
-							description: string | null;
-							imageUrl: string | null;
-						}) => (
-							<CategoryCard
-								key={category.categoryId}
-								categoryId={category.categoryId}
-								name={category.name}
-								description={category.description}
-								imageUrl={category.imageUrl || IMAGE_PATH + '/logo-background.png'}
-							></CategoryCard>
-						)
-					)}
 				</div>
 			</section>
 		</div>

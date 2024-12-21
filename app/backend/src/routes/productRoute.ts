@@ -8,6 +8,7 @@
 import { Router, Request, Response } from 'express';
 import { ProductController } from '../controllers/productController';
 import { asyncHandler } from '../middlewares/asyncHandler';
+import { authenticateToken } from '../middlewares/authMiddleware';
 
 export const productRouter = Router();
 const productController = new ProductController(); // Initialize the ProductController instance to handle product operations
@@ -63,6 +64,7 @@ productRouter.get(
  */
 productRouter.post(
 	'/',
+	authenticateToken,
 	asyncHandler(async (req: Request, res: Response) => {
 		const productData = req.body;
 
@@ -115,11 +117,15 @@ productRouter.put(
  */
 productRouter.delete(
 	'/:id',
+	authenticateToken,
 	asyncHandler(async (req: Request, res: Response) => {
 		const id = parseInt(req.params.id, 10);
+
 		if (isNaN(id) || id <= 0) {
 			return res.status(400).json({ message: 'Invalid product ID.' });
 		}
+
+		console.log('Deleting product with ID:', id);
 
 		const result = await productController.removeProductById(id);
 		return res.status(result.success ? 200 : 404).json(result);

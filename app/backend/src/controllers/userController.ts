@@ -307,4 +307,42 @@ export class UserController {
 			throw { statusCode: 500, message: 'Failed to delete user' };
 		}
 	}
+
+	/**
+	 * @param {Omit<User, 'userId' | 'createdAt' | 'updatedAt'>} user - The user data to insert.
+	 * @returns {Promise<{ success: boolean; message: string, data: any }>} - Success message or error message.
+	 */
+	async createAdminUser(
+		userContact: any
+	): Promise<{ success: boolean; message?: string; statusCode?: number; data?: any }> {
+		try {
+			// Hash the password before storing it
+			const bcrypt = require('bcrypt');
+			const saltRounds = 10;
+			const passwordHash = await bcrypt.hash(userContact.password, saltRounds);
+
+			// Prepare user data for insertion
+			const newUser = {
+				name: userContact.name,
+				email: userContact.email,
+				passwordHash, // Use hashed password
+				phone: userContact.phone,
+				role: 'admin'
+			};
+
+			const newUserId = await this.userDAO.insertUser(newUser);
+
+			return {
+				success: true,
+				statusCode: 201,
+				data: {
+					userId: newUserId
+				}
+			};
+		} catch (err: any) {
+			// Return the error message and status from DAO layer
+			console.log('Error creating user:', err);
+			return { success: false, message: err.message, statusCode: err.statusCode || 500 };
+		}
+	}
 }

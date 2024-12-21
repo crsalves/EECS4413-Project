@@ -1,19 +1,20 @@
 /* Categories Section Container */
 .categoriesContainer {
-	flex: 0 0 calc(25% - 1.5rem); /* Set card width to 25% minus the gap */
-	min-width: 200px; /* Prevent shrinking on smaller screens */
-	background-color: #f9f9f9;
-	position: relative;
-	margin: 2rem auto;
-	padding: 1.5rem;
 	display: flex; /* Display categories horizontally */
 	flex-wrap: wrap; /* Allow wrapping when content overflows */
 	gap: 1.5rem; /* Space between category cards */
 	justify-content: center; /* Center items horizontally */
 	align-items: flex-start; /* Align items to the top */
+	flex: 0 0 100%; /* Full width by default */
+	min-width: 200px; /* Prevent shrinking on smaller screens */
+	padding: 1.5rem;
+	margin: 2rem auto;
+	background-color: #f9f9f9;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-	overflow: hidden;
+	border: 1px solid #ddd; /* Add border for better contrast */
+	overflow: hidden; /* Ensure children stay within bounds */
+	position: relative;
 }
 
 /* Title for Categories Section */
@@ -43,8 +44,8 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	object-fit: scale-down;
-	opacity: 0.1; /* Low opacity */
+	object-fit: contain; /* More consistent scaling for images */
+	opacity: 0.1; /* Low opacity for subtle background */
 	z-index: 0;
 	pointer-events: none;
 }
@@ -54,7 +55,7 @@
 	flex: 0 0 calc(25% - 1.5rem); /* Set card width to 25% minus the gap */
 	min-width: 200px; /* Prevent shrinking on smaller screens */
 	padding: 1rem;
-	border: 1px solid #d01f1f;
+	border: 1px solid #f0f0f0;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 	background-color: #fff;
@@ -65,6 +66,9 @@
 	position: relative; /* To ensure z-index works properly */
 	z-index: 2;
 	display: flex; /* Align items horizontally */
+	flex-direction: column; /* Stack content inside card vertically */
+	align-items: center; /* Center-align content */
+	justify-content: center;
 }
 
 /* Hover Effect for Category */
@@ -127,7 +131,7 @@
 	}
 
 	.category {
-		flex: 0 0 200px; /* Smaller card width */
+		flex: 0 0 calc(50% - 1rem); /* Set card width to 50% */
 	}
 }
 
@@ -139,6 +143,7 @@
 	}
 
 	.category {
-		width: 100%; /* Full width */
+		flex: 0 0 100%; /* Full width */
+		margin: 0 auto; /* Center align vertically stacked cards */
 	}
 }

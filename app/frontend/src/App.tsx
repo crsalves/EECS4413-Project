@@ -1,36 +1,37 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
-import AdminOrdersPage from './pages/Admin/AdminOrdersPage';
-import AdminProductsPage from './pages/Admin/AdminProductsPage';
-import AdminRootPage from './pages/Admin/AdminRootPage';
-import AdminUsersPage from './pages/Admin/AdminUsersPage';
 import CartPage from './pages/Cart/CartPage';
-import CatalogMainPage from './pages/Catalog/CatalogPage';
-import { LOADER_CATEGORY_DATA, getCatalogLoader } from './pages/Catalog/getCatalogLoader';
-import { LOADER_PRODUCT_BY_CATEGORY, getProductByCategoryLoader } from './pages/Category/getProductByCategoryLoader';
-import CheckoutRootPage from './pages/Checkout/CheckoutRootPage';
-import { HomePage } from './pages/Home/HomePage';
-import { getHomePageLoader } from './pages/Home/getHomePageLoader';
-import LoginPage from './pages/Login/LoginPage';
-import { validateLoginAction } from './pages/Login/validateLoginAction';
-import OrderByUserPage from './pages/Order/OrderByUserPage';
-import OrderViewPage from './pages/Order/OrderViewPage';
-import { getOrderByUserLoader } from './pages/Order/getOrderByUserLoader';
-import { getOrderLoader } from './pages/Order/getOrderLoader';
-import { getOrdersLoader } from './pages/Order/getOrdersLoader';
 import ProductDetailViewPage from './pages/Product/ProductDetailViewPage';
 import { LOADER_PRODUCT_ID, getProductIdLoader } from './pages/Product/getProductIdLoader';
-import { LOADER_PRODUCT_SEARCH, productSearchLoader } from './pages/Product/productSearchLoader';
+import CatalogMainPage from './pages/Catalog/CatalogPage';
+import { getCatalogLoader } from './pages/Catalog/getCatalogLoader';
+import { HomePage } from './pages/Home/HomePage';
+import LoginPage from './pages/Login/LoginPage';
 import ProfileAccountPage from './pages/Profile/ProfileAccountPage';
 import ProfileAddressPage from './pages/Profile/ProfileAddressPage';
-import ProfilePage from './pages/Profile/ProfilePage';
 import ProfilePaymentPage from './pages/Profile/ProfilePaymentPage';
-import { getProfileAddressLoader } from './pages/Profile/getProfileAddressLoader';
-import { getProfileLoader } from './pages/Profile/getProfileLoader';
 import { getProfilePaymentLoader } from './pages/Profile/getProfilePaymentLoader';
+import ProfilePage from './pages/Profile/ProfilePage';
+import { getProfileLoader } from './pages/Profile/getProfileLoader';
+import { getProductByCategoryLoader, LOADER_PRODUCT_BY_CATEGORY } from './pages/Category/getProductByCategoryLoader';
+import { getHomePageLoader } from './pages/Home/getHomePageLoader';
+import { RootPage } from './pages/Root/RootPage';
+import AdminOrdersPage from './pages/Admin/AdminOrdersPage';
+import AdminProductsPage from './pages/Admin/AdminProductsPage';
+import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
+import AdminRootPage from './pages/Admin/AdminRootPage';
+import AdminUsersPage from './pages/Admin/AdminUsersPage';
+import { productSearchLoader, LOADER_PRODUCT_SEARCH } from './pages/Product/productSearchLoader';
+import OrderViewPage from './pages/Order/OrderViewPage';
+import { getOrderLoader } from './pages/Order/getOrderLoader';
 import RegistrationPage from './pages/Registration/RegistrationPage';
 import { addRegistrationAction } from './pages/Registration/addRegistrationAction';
-import { RootPage } from './pages/Root/RootPage';
+import CheckoutRootPage from './pages/Checkout/CheckoutRootPage';
+import OrderByUserPage from './pages/Order/OrderByUserPage';
+import { getOrderByUserLoader } from './pages/Order/getOrderByUserLoader';
+import { getOrdersLoader } from './pages/Order/getOrdersLoader';
+import { getProfileAddressLoader } from './pages/Profile/getProfileAddressLoader';
+import { LOADER_CATEGORY_DATA } from './pages/Catalog/getCatalogLoader';
+import { getProfilesLoader } from './pages/Profile/getProfilesLoader';
 
 const router = createBrowserRouter(
 	[
@@ -83,7 +84,7 @@ const router = createBrowserRouter(
 						{ path: 'user/:userId', element: <OrderByUserPage />, loader: getOrderByUserLoader }
 					]
 				},
-				{ path: 'login', element: <LoginPage />, action: validateLoginAction },
+				{ path: 'login', element: <LoginPage /> },
 				{ path: 'registration', element: <RegistrationPage />, action: addRegistrationAction },
 				{
 					path: 'user',
@@ -123,11 +124,13 @@ const router = createBrowserRouter(
 						},
 						{
 							path: 'products',
-							element: <AdminProductsPage />
+							element: <AdminProductsPage />,
+							loader: getCatalogLoader
 						},
 						{
 							path: 'users',
-							element: <AdminUsersPage />
+							element: <AdminUsersPage />,
+							loader: getProfilesLoader
 						}
 					]
 				}

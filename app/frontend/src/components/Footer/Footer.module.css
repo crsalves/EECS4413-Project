@@ -1,8 +1,8 @@
 .footerContainer {
-	background-color: #f0f0f0;
+	background-color: #2a9d8f !important;
+	color: #fff !important;
 	border-top: 1px solid #ddd;
 	box-shadow: 0 2px 5px #f4f4f4;
-	color: #333333;
 	bottom: 0;
 	width: 100%;
 	opacity: 95%;

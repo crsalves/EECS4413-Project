@@ -288,3 +288,83 @@ userRouter.delete(
 		return res.status(result.success ? 200 : 404).json(result);
 	})
 );
+
+
+userRouter.post(
+	'/admin',
+	authenticateToken,
+	asyncHandler(async (req: Request, res: Response) => {
+		const userContact = req.body;
+
+		console.log('Adding new aadmin user: ', userContact);
+
+		// Validate required fields
+		if (!userContact.name || !userContact.email || !userContact.password) {
+			return res.status(400).json({ message: 'Invalid input: name, email, and password are required.' });
+		}
+
+		// Call the controller to create the user
+		const result = await userController.createAdminUser(userContact);
+
+		if (!result.success) {
+			// Send appropriate HTTP response for the error
+			const statusCode = result.statusCode || 500;
+			return res.status(statusCode).json({ message: result.message });
+		}
+
+		// Respond with success message
+		return res.status(201).json({ message: 'User added successfully.', data: result.data });
+	})
+);
+
+/**
+ * Updates a user by their ID in the database.
+ *
+ * @param {number} id - The ID of the user to update.
+ * @param {Partial<User>} updates - Fields to update in the user.
+ * @returns {Object} Success message and updated user details.
+ * @throws {400} If the ID or update fields are invalid.
+ * @throws {404} If the user is not found.
+ */
+userRouter.put(
+	'/admin/:id',
+	authenticateToken,
+	asyncHandler(async (req: Request, res: Response) => {
+		const id = parseInt(req.params.id, 10);
+		const updates = req.body;
+
+		if (isNaN(id) || id <= 0) {
+			return res.status(400).json({ message: 'Invalid user ID.' });
+		}
+
+		if (Object.keys(updates).length === 0) {
+			return res.status(400).json({ message: 'At least one field is required to update.' });
+		}
+
+		const result = await userController.editUserById(id, updates);
+		return res.status(result.success ? 200 : 404).json(result);
+	})
+);
+
+/**
+ * Deletes a user by their ID from the database.
+ *
+ * @param {number} id - The ID of the user to delete.
+ * @returns {Object} Success message or error message.
+ * @throws {400} If the ID is invalid.
+ * @throws {404} If the user is not found.
+ */
+userRouter.delete(
+	'/admin/:id',
+	authenticateToken,
+	asyncHandler(async (req: Request, res: Response) => {
+		const id = parseInt(req.params.id, 10);
+		if (isNaN(id) || id <= 0) {
+			return res.status(400).json({ message: 'Invalid user ID.' });
+		}
+
+		const result = await userController.removeUserById(id);
+		return res.status(result.success ? 200 : 404).json(result);
+	})
+);
+

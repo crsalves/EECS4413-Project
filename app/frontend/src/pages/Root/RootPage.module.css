@@ -1,13 +1,25 @@
-/* Ensure the root container takes full viewport height */
+/* Root Container with Full-Height Layout */
 .root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
-    margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	background-color: #fef8f2; /* Soft background consistent with the home page */
+	font-family: 'Arial', sans-serif;
 }
 
+/* Main Content Area */
 .rootContainer {
-    flex: 1; /* Allows the main content to grow and push the footer */
-    padding-top: 7em; /* Ensure no overlap with the fixed header */
-    padding-bottom: 5em;
+	flex: 1; /* Allows the main content to grow and push the footer */
+	padding-top: 7em; /* Ensure no overlap with the fixed header */
+	padding-bottom: 5em; /* Add spacing for footer */
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	text-align: center;
+	color: #264653; /* Deep teal for text consistency */
+	background-color: #ffffff; /* White background for content clarity */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	border-radius: 12px; /* Rounded corners for modern design */
+	margin: 2rem auto; /* Center the main content */
+	max-width: 1200px; /* Limit the content width */
 }

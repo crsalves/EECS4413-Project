@@ -1,0 +1,18 @@
+.adminContainer {
+	display: flex;
+	flex-direction: column;
+	object-fit: contain;
+	align-items: center;
+	justify-content: center;
+}
+
+.tableContainer {
+	width: 100%;
+	height: auto;
+	margin: 20px 0;
+	padding: 1rem 0;
+}
+
+.primaryButton {
+	background-color: #2a9d8f !important;
+}

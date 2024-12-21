@@ -88,13 +88,19 @@ export class UserDAO {
 	 */
 	async selectUserByEmail(email: string): Promise<any> {
 		try {
+
+			console.log('Querying user by email:', email);
+
 			const query = 'SELECT * FROM `user` WHERE email = ?';
 			const [results]: any = await UserDAO.pool.query(query, [email]);
 
+			console.log('User found:', results[0]);
+
 			// If no user is found, return null
-			if (results.length === 0) {
-				return null;
+			if (results?.length === 0 || !results) {
+				return { statusCode: 404, message: 'User not found.' };
 			}
+
 
 			const row = results[0];
 			return {
@@ -109,7 +115,7 @@ export class UserDAO {
 			console.error(`Error fetching user by email (${email}):`, err);
 
 			// Throw a structured error for consistent error handling
-			throw { statusCode: 500, message: 'Failed to fetch user by email.' };
+			return { statusCode: 500, message: 'An error ocurred.' };
 		}
 	}
 

@@ -1,24 +1,21 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
+import styles from './Header.module.css';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
-import CartContext from 'src/store/CartContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
-
-import AuthenticationContext from 'src/store/AuthenticationContext';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthenticationContext from 'src/store/AuthenticationContext';
+import CartContext from 'src/store/CartContext';
 
 export default function HeaderBar() {
 	// const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -76,14 +73,9 @@ export default function HeaderBar() {
 	};
 
 	return (
-		<AppBar position="fixed">
+		<AppBar position="fixed" className={styles.headerContainer}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-						<MenuIcon />
-					</IconButton>
-
-					<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
 					<Typography
 						variant="h6"
 						noWrap

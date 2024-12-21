@@ -19,6 +19,7 @@ import {
 } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { useState } from 'react';
+import styles from './AdminOrdersPage.module.css';
 
 const OrderCRUDPage = () => {
 	const [orders, setOrders] = useState([
@@ -113,19 +114,19 @@ const OrderCRUDPage = () => {
 	};
 
 	return (
-		<div style={{ padding: '20px' }}>
+		<div className={styles.adminContainer}>
 			<Typography variant="h4" gutterBottom>
 				Order Management
 			</Typography>
-			<Button variant="contained" color="primary" onClick={() => handleOpen()}>
+			<Button variant="contained" className={styles.primaryButton} onClick={() => handleOpen()}>
 				Add Order
 			</Button>
 
 			{/* Table */}
-			<TableContainer component={Paper} style={{ marginTop: '20px' }}>
+			<TableContainer component={Paper} className={styles.tableContainer}>
 				<Table>
 					<TableHead>
-						<TableRow>
+						<TableRow className={styles.tableRow}>
 							<TableCell>Order ID</TableCell>
 							<TableCell>User ID</TableCell>
 							<TableCell>Total Price ($)</TableCell>

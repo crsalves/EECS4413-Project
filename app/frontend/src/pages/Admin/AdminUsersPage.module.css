@@ -1,0 +1,33 @@
+.adminContainer {
+	display: flex;
+	flex-direction: column;
+	object-fit: contain;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.primaryButton {
+	background-color: #2a9d8f !important;
+}
+.tableContainer {
+	margin: 20px 0;
+	object-fit: fill;
+	background-color: rgb(150, 144, 144);
+}
+
+.table {
+	width: 100%;
+	border-collapse: inherit;
+}
+
+.table th,
+.table td {
+	border: 1px solid #ddd;
+	text-align: left;
+}
+
+.table th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+}

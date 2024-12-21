@@ -2,7 +2,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #f0f0f0;
+	background-color: #2a9d8f !important;
+	color: #264653 !important;
 	border-bottom: 1px solid #ddd;
 	box-shadow: 0 2px 5px #f4f4f4;
 	position: fixed;
@@ -12,5 +13,5 @@
 	transition:
 		background-color 0.3s ease,
 		backdrop-filter 0.3s ease;
-	opacity: 70%; /* Semi-transparent header */
+	opacity: 90%; /* Semi-transparent header */
 }

@@ -142,7 +142,7 @@ export default function CatalogMainPage() {
 					Cyber Store Products
 				</Typography>
 				<Typography variant="h6" color="text.secondary" textAlign="center" mb={4}>
-					Find the best products for your pets
+					Find the best products for your pets!
 				</Typography>
 
 				<Grid container spacing={4}>
@@ -156,5 +156,3 @@ export default function CatalogMainPage() {
 		</div>
 	);
 }
-
-

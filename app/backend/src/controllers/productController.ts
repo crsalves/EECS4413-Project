@@ -47,12 +47,12 @@ export class ProductController {
 	 */
 	async createProduct(
 		product: Omit<Product, 'productId' | 'createdAt' | 'updatedAt'>
-	): Promise<{ success: boolean; message: string }> {
+	): Promise<{ success: boolean; message: string; data?: any }> {
 		try {
 			const newProductId = await this.productDAO.insertProduct(product);
 
 			if (newProductId) {
-				return { success: true, message: 'Product added successfully' };
+				return { success: true, message: 'Product added successfully', data: { productId: newProductId } };
 			}
 
 			return { success: false, message: 'Failed to add product' };

@@ -1,0 +1,8 @@
+.adminContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fef8f2 !important;
+	padding: 0 !important;
+	margin: 0 auto !important;
+}

@@ -19,6 +19,7 @@ interface CartState {
 interface CartContextValue extends CartState {
 	addItem: (item: Omit<CartItem, 'quantity'>) => void;
 	removeItem: (id: number) => void;
+	deleteItem: (id: number) => void;
 	submitOrder: () => void;
 }
 
@@ -27,6 +28,7 @@ const CartContext = createContext<CartContextValue>({
 	items: [],
 	addItem: () => {},
 	removeItem: () => {},
+	deleteItem: () => {},
 	submitOrder: () => {}
 });
 
@@ -82,6 +84,14 @@ function cartReducer(state, action) {
 		return { ...state, items: updatedItems };
 	}
 
+	if (action.type === 'DELETE_PRODUCT') {
+		const existingCartItemIndex = state.items.findIndex((item) => item.id === action.id);
+		const updatedItems = [...state.items];
+		updatedItems.splice(existingCartItemIndex, 1);
+		localStorage.setItem('cart', JSON.stringify(updatedItems));
+		return { ...state, items: updatedItems };
+	}
+
 	if (action.type === 'SUBMIT_ORDER') {
 		localStorage.setItem('cart', JSON.stringify([]));
 		return { ...state, items: [] };
@@ -103,6 +113,10 @@ export function CartContextProvider({ children }) {
 
 	function loadItems(items) {
 		dispatchCartAction({ type: 'LOAD_CART', items: items });
+	}
+
+	function deleteItem(id) {
+		dispatchCartAction({ type: 'DELETE_PRODUCT', id: id });
 	}
 
 	function submitOrder() {
@@ -131,7 +145,8 @@ export function CartContextProvider({ children }) {
 				items: cart.items,
 				addItem: addItem,
 				removeItem: removeItem,
-				submitOrder: submitOrder
+				submitOrder: submitOrder,
+				deleteItem: deleteItem
 			}}
 		>
 			{children}

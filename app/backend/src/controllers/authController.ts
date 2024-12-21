@@ -34,12 +34,16 @@ export class AuthController {
 		try {
 			const user = await this.userDAO.selectUserByEmail(email);
 
+			if (user.statusCode === 404 || !user) {
+				return { success: false, statusCode: 404, message: 'Email not found.' };
+			}
+
 			const userAddress = await this.userDAO.selectUserAddress(user.userId);
 
 			const userPayment = await this.userDAO.selectUserPayment(user.userId);
 
-			if (!user || !(await comparePasswords(password, user.passwordHash))) {
-				return { success: false, statusCode: 401, message: 'Invalid email or password.' };
+			if (!(await comparePasswords(password, user.passwordHash))) {
+				return { success: false, statusCode: 401, message: 'Password entered is not valid' };
 			}
 
 			const token = jwt.sign({ userId: user.userId, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
@@ -49,7 +53,7 @@ export class AuthController {
 				statusCode: 200,
 				message: 'Login successful.',
 				token: `Bearer ${token}`,
-				user: { userId: user.userId, name: user.name, email: user.email, phone: user.phone }, // Transform user to a model instance
+				user: { userId: user.userId, name: user.name, email: user.email, phone: user.phone, role: user.role }, // Transform user to a model instance
 				userAddress: userAddress,
 				userPayment: userPayment
 			};

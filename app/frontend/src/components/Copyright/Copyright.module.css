@@ -1,10 +1,9 @@
 .copyrightContainer {
-	color: #333;
 	padding: 1em;
 	text-align: center;
 }
 
 .companyName {
-	color: #333;
+	color: #fff !important;
 	text-decoration: none;
 }

@@ -79,7 +79,7 @@ export class OrderDAO {
 		try {
 			const query = 'SELECT * FROM `order` WHERE user_id = ?';
 			const [results]: any = await OrderDAO.pool.query(query, [userId]);
-			if (results.length === 0) return null;
+			if (results.length === 0) return [];
 			return results.map((row: any) => ({
 				orderId: row.order_id,
 				userId: row.user_id,
